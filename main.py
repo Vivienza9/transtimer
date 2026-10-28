@@ -5,6 +5,23 @@ import time
 
 import typer
 
+start_egg = '''
+            ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⢻⡝⢯⣍⠓⠦⣀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⢀⣼⣿⣿⢻⡜⢧⢊⠕⢂⠉⠰⡈⠱⢄⠀⠀⠀⠀
+            ⠀⠀⠀⣼⣿⣿⣿⡽⢧⣛⢎⠥⠊⠀⠀⠀⠀⠀⠌⢣⡀⠀⠀
+            ⠀⠀⣼⣿⣿⣿⣯⢿⣹⠞⡼⣨⠁⠄⠀⠀⠀⠀⠀⠄⢳⡀⠀
+            ⠀⣸⣿⣿⣿⣿⣯⣟⢮⣻⡱⢆⡍⡀⠀⠀⠀⠀⠀⠄⢂⢣⠀
+            ⢀⣿⣿⣿⣿⣿⡿⣞⡟⣶⡹⢲⡰⢠⠀⠀⠀⠀⠀⠌⠠⢸⡄
+            ⢸⣿⣿⣿⣿⣿⡿⣽⢻⢶⣹⢣⠞⣄⠂⠤⠀⠀⠌⠠⢁⠂⡇
+            ⢸⣿⣿⣿⣿⣿⣷⣻⠾⣜⢯⣚⠴⣉⠆⡄⢂⠐⡀⠆⡈⠔⡇
+            ⢸⣿⣿⣿⣿⣿⡿⣽⣻⡝⣮⡝⣺⡐⢎⡐⢂⠡⡐⡀⠆⢬⡇
+            ⠀⣿⣿⣿⣿⣿⣿⣯⢷⣫⢗⡾⣡⢝⡢⣑⢊⡔⠡⡐⢌⣸⠀
+            ⠀⠸⣿⣿⣿⣿⣿⣾⢯⣷⢫⣞⡵⢎⡵⣈⠧⢌⡱⢨⢲⠃⠀
+            ⠀⠀⠙⢿⣿⣿⣿⣿⣻⢾⣝⠾⣜⣏⠶⣩⠞⣌⢲⣵⠋⠀⠀
+            ⠀⠀⠀⠈⠛⢿⣿⣿⣿⣻⣞⣟⣳⢮⡻⣥⢛⣬⠟⠁⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠉⠛⠿⢿⣿⣽⣳⣯⡷⠝⠋⠁⠀⠀⠀⠀⠀
+
+        '''
 
 def parse_time(time: str):
     secs = 0.0
@@ -21,7 +38,8 @@ app = typer.Typer()
 def timer(duration: str):
     secs = parse_time(duration)
     for remaining in range(secs, 0, -1):
-        sys.stdout.write("\r")
+        sys.stdout.write("\r\033[16A")
+        sys.stdout.writelines(start_egg)
         sys.stdout.write(f"{remaining:2d} seconds remaining.") 
         sys.stdout.flush()
         time.sleep(1)
